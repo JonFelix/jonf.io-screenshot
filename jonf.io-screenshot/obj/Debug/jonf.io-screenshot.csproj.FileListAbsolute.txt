@@ -1,0 +1,9 @@
+c:\users\jonfe\documents\visual studio 2015\Projects\jonf.io-screenshot\jonf.io-screenshot\bin\Debug\jonf.io-screenshot.exe.config
+c:\users\jonfe\documents\visual studio 2015\Projects\jonf.io-screenshot\jonf.io-screenshot\bin\Debug\jonf.io-screenshot.exe
+c:\users\jonfe\documents\visual studio 2015\Projects\jonf.io-screenshot\jonf.io-screenshot\bin\Debug\jonf.io-screenshot.pdb
+c:\users\jonfe\documents\visual studio 2015\Projects\jonf.io-screenshot\jonf.io-screenshot\obj\Debug\jonf.io-screenshot.csprojResolveAssemblyReference.cache
+c:\users\jonfe\documents\visual studio 2015\Projects\jonf.io-screenshot\jonf.io-screenshot\obj\Debug\jonf.io_screenshot.Form1.resources
+c:\users\jonfe\documents\visual studio 2015\Projects\jonf.io-screenshot\jonf.io-screenshot\obj\Debug\jonf.io_screenshot.Properties.Resources.resources
+c:\users\jonfe\documents\visual studio 2015\Projects\jonf.io-screenshot\jonf.io-screenshot\obj\Debug\jonf.io-screenshot.csproj.GenerateResource.Cache
+c:\users\jonfe\documents\visual studio 2015\Projects\jonf.io-screenshot\jonf.io-screenshot\obj\Debug\jonf.io-screenshot.exe
+c:\users\jonfe\documents\visual studio 2015\Projects\jonf.io-screenshot\jonf.io-screenshot\obj\Debug\jonf.io-screenshot.pdb
