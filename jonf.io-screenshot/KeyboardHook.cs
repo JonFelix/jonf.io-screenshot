@@ -65,8 +65,7 @@ namespace jonf.io_screenshot
                                                                                             
         public void RegisterHotKey(ModifierKeys modifier, Keys key)
         {                                 
-            _currentId = _currentId + 1;
-                                      
+            _currentId = _currentId + 1;                            
             if(!RegisterHotKey(_window.Handle, _currentId, (uint)modifier, (uint)key))
                 throw new InvalidOperationException("Couldn’t register the hot key.");
         }

@@ -17,14 +17,24 @@ namespace jonf.io_screenshot
         Alt = 1,
         Control = 2,
         Shift = 4,
-        Win = 8
+        Win = 8,
+        Noone = 0
+
     }
+
+    public struct ImageItem
+    {
+        public Bitmap Image;
+        public DateTime Time;
+    }
+
 
     public struct ScreenSettings
     {
         public string Name;
         public bool SaveFile;
         public PictureBox Image;
+        public List<ImageItem> History;
     }
 
     public partial class Form1 : Form
@@ -45,8 +55,7 @@ namespace jonf.io_screenshot
             _KeyboardHook.KeyPressed +=
             new EventHandler<KeyPressedEventArgs>(HookKeyPressed);
             // register the control + alt + F12 combination as hot key.
-            _KeyboardHook.RegisterHotKey(jonf.io_screenshot.ModifierKeys.Control | jonf.io_screenshot.ModifierKeys.Alt,
-                Keys.F12);
+            _KeyboardHook.RegisterHotKey(jonf.io_screenshot.ModifierKeys.Noone, Keys.PrintScreen);
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -56,6 +65,7 @@ namespace jonf.io_screenshot
             {
                 _ScreenSettings[i].Name = _Screens[i].DeviceName;
                 _ScreenSettings[i].SaveFile = true;
+                _ScreenSettings[i].History = new List<ImageItem>();
                 TabPage tab = new TabPage(_Screens[i].DeviceName);
                 _ScreenSettings[i].Image = new PictureBox();
                 _ScreenSettings[i].Image.Dock = DockStyle.Fill;
@@ -91,7 +101,15 @@ namespace jonf.io_screenshot
             for(int i = 0; i < Screen.AllScreens.Length; i++)
             {
                 _ScreenSettings[i].Image.Image = _Screenshot.TakeScreenhot(i);
+                ImageItem historyItem = new ImageItem();
+                historyItem.Image = (Bitmap)_ScreenSettings[i].Image.Image;
+                historyItem.Time = DateTime.Now;
+                _ScreenSettings[i].History.Add(historyItem);
             }
+            ListViewItem lviItem = new ListViewItem();
+            lviItem.Tag = _ScreenSettings[0].History.Count - 1;
+            lviItem.Text = DateTime.Now.ToShortTimeString();
+            listView1.Items.Add(lviItem);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -106,6 +124,17 @@ namespace jonf.io_screenshot
                 if(_ScreenSettings[i].SaveFile)
                 {   
                     _Screenshot.SaveScreenshot(_SaveLocation + @"\" + @DateTime.Now.ToString().Replace("/", "").Replace(":", "").Replace("PM", "").Replace("AM", "").Replace(" ", "")+"_"+i.ToString(), (Bitmap)_ScreenSettings[i].Image.Image);
+                }
+            }
+        } 
+
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(listView1.SelectedItems.Count > 0)
+            {   
+                for(int i = 0; i < _ScreenSettings.Length; i++)
+                {
+                    _ScreenSettings[i].Image.Image = _ScreenSettings[i].History[(int)listView1.SelectedItems[0].Tag].Image;
                 }
             }
         }
